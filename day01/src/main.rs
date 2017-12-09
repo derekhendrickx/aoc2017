@@ -22,8 +22,8 @@ fn find_sum_match_next_digit(inputs: &[i32]) -> i32 {
 
 fn find_sum_match_halfway_round(input: &[i32]) -> i32 {
     let half = ((input.len() as f32) * 0.5) as usize;
-    let first_half = &input[0 .. half];
-    let second_half = &input[half .. input.len()];
+    let first_half = &input[0..half];
+    let second_half = &input[half..input.len()];
     let mut sum: i32 = 0;
 
     for (index, x) in first_half.iter().enumerate() {
