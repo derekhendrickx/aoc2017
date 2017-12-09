@@ -1,7 +1,7 @@
 use std::io::prelude::*;
 use std::fs::File;
 
-fn find_sum_match_next_digit(inputs: &Vec<i32>) -> i32 {
+fn find_sum_match_next_digit(inputs: &[i32]) -> i32 {
     let mut sum: i32 = 0;
     let mut previous = inputs[0];
     let last = inputs[inputs.len() - 1];
@@ -28,10 +28,10 @@ fn main() {
     input_file.read_to_string(&mut buffer).expect(
         "Unable to read data",
     );
+
     for digit in buffer.chars() {
-        match digit.to_digit(10) {
-            Some(value) => input.push(value as i32),
-            None => (),
+        if let Some(value) = digit.to_digit(10) {
+            input.push(value as i32);
         }
     }
     let sum = find_sum_match_next_digit(&input);
