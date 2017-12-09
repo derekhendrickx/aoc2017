@@ -68,63 +68,63 @@ mod tests {
     use super::find_sum_match_halfway_round;
 
     #[test]
-    fn test_find_sum_match_next_digit_first_input() {
+    fn test_find_sum_match_next_digit_input_sample_1() {
         let input = [1, 1, 2, 2];
         let sum = find_sum_match_next_digit(&input);
         assert_eq!(sum, 3);
     }
 
     #[test]
-    fn test_find_sum_match_next_digit_second_input() {
+    fn test_find_sum_match_next_digit_input_sample_2() {
         let input = [1, 1, 1, 1];
         let sum = find_sum_match_next_digit(&input);
         assert_eq!(sum, 4);
     }
 
     #[test]
-    fn test_find_sum_match_next_digit_third_input() {
+    fn test_find_sum_match_next_digit_input_sample_3() {
         let input = [1, 2, 3, 4];
         let sum = find_sum_match_next_digit(&input);
         assert_eq!(sum, 0);
     }
 
     #[test]
-    fn test_find_sum_match_next_digit_fourth_input() {
+    fn test_find_sum_match_next_digit_input_sample_4() {
         let input = [9, 1, 2, 1, 2, 1, 2, 9];
         let sum = find_sum_match_next_digit(&input);
         assert_eq!(sum, 9);
     }
 
     #[test]
-    fn test_find_sum_match_halfway_round_first_input() {
+    fn test_find_sum_match_halfway_round_input_sample_1() {
         let input = [1, 2, 1, 2];
         let sum = find_sum_match_halfway_round(&input);
         assert_eq!(sum, 6);
     }
 
     #[test]
-    fn test_find_sum_match_halfway_round_second_input() {
+    fn test_find_sum_match_halfway_round_input_sample_2() {
         let input = [1, 2, 3, 4];
         let sum = find_sum_match_halfway_round(&input);
         assert_eq!(sum, 0);
     }
 
     #[test]
-    fn test_find_sum_match_halfway_round_third_input() {
+    fn test_find_sum_match_halfway_round_input_sample_3() {
         let input = [1, 2, 3, 4, 2, 5];
         let sum = find_sum_match_halfway_round(&input);
         assert_eq!(sum, 4);
     }
 
     #[test]
-    fn test_find_sum_match_halfway_round_fourth_input() {
+    fn test_find_sum_match_halfway_round_input_sample_4() {
         let input = [1, 2, 3, 1, 2, 3];
         let sum = find_sum_match_halfway_round(&input);
         assert_eq!(sum, 12);
     }
 
     #[test]
-    fn test_find_sum_match_halfway_round_fifth_input() {
+    fn test_find_sum_match_halfway_round_input_sample_5() {
         let input = [1, 2, 1, 3, 1, 4, 1, 5];
         let sum = find_sum_match_halfway_round(&input);
         assert_eq!(sum, 4);
