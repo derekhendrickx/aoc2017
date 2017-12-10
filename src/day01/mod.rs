@@ -1,7 +1,4 @@
-use std::io::prelude::*;
-use std::fs::File;
-
-fn find_sum_match_next_digit(inputs: &[i32]) -> i32 {
+pub fn find_sum_match_next_digit(inputs: &[i32]) -> i32 {
     let mut sum: i32 = 0;
     let mut previous = inputs[0];
     let last = inputs[inputs.len() - 1];
@@ -20,7 +17,7 @@ fn find_sum_match_next_digit(inputs: &[i32]) -> i32 {
     sum
 }
 
-fn find_sum_match_halfway_round(input: &[i32]) -> i32 {
+pub fn find_sum_match_halfway_round(input: &[i32]) -> i32 {
     let half = ((input.len() as f32) * 0.5) as usize;
     let first_half = &input[0..half];
     let second_half = &input[half..input.len()];
@@ -39,27 +36,6 @@ fn find_sum_match_halfway_round(input: &[i32]) -> i32 {
     }
 
     sum
-}
-
-fn main() {
-    let mut input_file = File::open("input.txt").expect("Unable to open file");
-    let mut buffer = String::new();
-    let mut input = Vec::new();
-
-    input_file.read_to_string(&mut buffer).expect(
-        "Unable to read data",
-    );
-
-    for digit in buffer.chars() {
-        if let Some(value) = digit.to_digit(10) {
-            input.push(value as i32);
-        }
-    }
-    let sum_part1 = find_sum_match_next_digit(&input);
-    let sum_part2 = find_sum_match_halfway_round(&input);
-
-    println!("Sum Part 1 = {}", sum_part1);
-    println!("Sum Part 2 = {}", sum_part2);
 }
 
 #[cfg(test)]
