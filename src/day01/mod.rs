@@ -1,6 +1,28 @@
 use util::open_file;
+use puzzle::Puzzle;
 
-pub fn find_sum_match_next_digit(inputs: &[i32]) -> i32 {
+pub struct Day01 {
+    input: Vec<i32>
+}
+
+impl Day01 {
+    pub fn new() -> Day01 {
+        Day01 { input: open_file("src/day01/input.txt") }
+    }
+}
+
+impl Puzzle for Day01 {
+    fn solve(&self) {
+        let sum_part1 = find_sum_match_next_digit(&self.input);
+        let sum_part2 = find_sum_match_halfway_round(&self.input);
+
+        println!("Day 01");
+        println!("Sum Part 1 = {}", sum_part1);
+        println!("Sum Part 2 = {}", sum_part2);
+    }
+}
+
+fn find_sum_match_next_digit(inputs: &[i32]) -> i32 {
     let mut sum: i32 = 0;
     let mut previous = inputs[0];
     let last = inputs[inputs.len() - 1];
@@ -19,7 +41,7 @@ pub fn find_sum_match_next_digit(inputs: &[i32]) -> i32 {
     sum
 }
 
-pub fn find_sum_match_halfway_round(input: &[i32]) -> i32 {
+fn find_sum_match_halfway_round(input: &[i32]) -> i32 {
     let half = ((input.len() as f32) * 0.5) as usize;
     let first_half = &input[0..half];
     let second_half = &input[half..input.len()];
@@ -38,15 +60,6 @@ pub fn find_sum_match_halfway_round(input: &[i32]) -> i32 {
     }
 
     sum
-}
-
-pub fn run() {
-    let input = open_file("src/day01/input.txt");
-    let sum_part1 = find_sum_match_next_digit(&input);
-    let sum_part2 = find_sum_match_halfway_round(&input);
-
-    println!("Sum Part 1 = {}", sum_part1);
-    println!("Sum Part 2 = {}", sum_part2);
 }
 
 #[cfg(test)]
