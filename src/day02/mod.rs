@@ -23,7 +23,7 @@ impl Puzzle for Day02 {
     }
 }
 
-fn difference_between_max_min(input: &Vec<Vec<i32>>) -> i32 {
+fn difference_between_max_min(input: &[Vec<i32>]) -> i32 {
     let mut sum: i32 = 0;
 
     for row in input {
@@ -46,7 +46,7 @@ fn difference_between_max_min(input: &Vec<Vec<i32>>) -> i32 {
     sum
 }
 
-fn evenly_divide(input: &Vec<Vec<i32>>) -> i32 {
+fn evenly_divide(input: &[Vec<i32>]) -> i32 {
     let mut sum: i32 = 0;
 
     for row in input {
