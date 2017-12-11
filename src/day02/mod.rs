@@ -3,7 +3,7 @@ use util::open_file_to_vector;
 use puzzle::Puzzle;
 
 pub struct Day02 {
-    input: Vec<Vec<i32>>
+    input: Vec<Vec<i32>>,
 }
 
 impl Day02 {
@@ -34,7 +34,7 @@ fn difference_between_max_min(input: &Vec<Vec<i32>>) -> i32 {
             if *x > max {
                 max = *x;
             }
-            
+
             if *x < min {
                 min = *x;
             }
@@ -70,22 +70,14 @@ mod tests {
 
     #[test]
     fn test_difference_between_max_min_sample_input() {
-        let input = vec![
-            vec![5, 1, 9, 5],
-            vec![7, 5, 3],
-            vec![2, 4, 6, 8]
-        ];
+        let input = vec![vec![5, 1, 9, 5], vec![7, 5, 3], vec![2, 4, 6, 8]];
         let sum = difference_between_max_min(&input);
         assert_eq!(18, sum);
     }
 
     #[test]
     fn test_evenly_divide_sample_input() {
-        let input = vec![
-            vec![5, 9, 2, 8],
-            vec![9, 4, 7, 3],
-            vec![3, 8, 6, 5]
-        ];
+        let input = vec![vec![5, 9, 2, 8], vec![9, 4, 7, 3], vec![3, 8, 6, 5]];
         let sum = evenly_divide(&input);
         assert_eq!(9, sum);
     }

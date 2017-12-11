@@ -2,7 +2,7 @@ use util::open_file;
 use puzzle::Puzzle;
 
 pub struct Day01 {
-    input: Vec<i32>
+    input: Vec<i32>,
 }
 
 impl Day01 {
