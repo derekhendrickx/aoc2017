@@ -24,17 +24,13 @@ impl Puzzle for Day02 {
 }
 
 fn difference_between_max_min(input: &[Vec<i32>]) -> i32 {
-    let mut sum: i32 = 0;
-
     input
         .iter()
-        .for_each(|row| {
+        .fold(0, |sum, row| {
             let min = row.iter().min().unwrap();
             let max = row.iter().max().unwrap();
-            sum += max - min;
-        });
-
-    sum
+            sum + (max - min)
+        })
 }
 
 fn evenly_divide(input: &[Vec<i32>]) -> i32 {
