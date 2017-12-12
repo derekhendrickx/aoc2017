@@ -36,9 +36,8 @@ fn find_sum_match_next_digit(inputs: &[i32]) -> i32 {
 
 fn find_sum_match_halfway_round(input: &[i32]) -> i32 {
     let half = ((input.len() as f32) * 0.5) as usize;
-    let first_half = &input[0..half];
 
-    first_half
+    (&input[0..half])
         .iter()
         .enumerate()
         .collect::<Vec<(usize, &i32)>>()
