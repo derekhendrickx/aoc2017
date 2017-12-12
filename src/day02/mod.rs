@@ -27,19 +27,8 @@ fn difference_between_max_min(input: &[Vec<i32>]) -> i32 {
     let mut sum: i32 = 0;
 
     for row in input {
-        let mut min = i32::MAX;
-        let mut max = i32::MIN;
-
-        for x in row {
-            if *x > max {
-                max = *x;
-            }
-
-            if *x < min {
-                min = *x;
-            }
-        }
-
+        let min = row.iter().min().unwrap();
+        let max = row.iter().max().unwrap();
         sum += max - min;
     }
 
