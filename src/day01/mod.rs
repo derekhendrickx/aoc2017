@@ -23,22 +23,15 @@ impl Puzzle for Day01 {
 }
 
 fn find_sum_match_next_digit(inputs: &[i32]) -> i32 {
-    let mut sum: i32 = 0;
     let mut previous = inputs[0];
-    let last = inputs[inputs.len() - 1];
+    let last = *inputs.last().unwrap();
+    let initial_sum = if last == previous { last } else { 0 };
 
-    if last == previous {
-        sum += last;
-    }
-
-    for x in &inputs[1..] {
-        if *x == previous {
-            sum += *x;
-        }
-        previous = *x;
-    }
-
-    sum
+    (&inputs[1..]).iter().fold(initial_sum, |sum, &x| {
+        let value = if x == previous { x } else { 0 };
+        previous = x;
+        sum + value
+    })
 }
 
 fn find_sum_match_halfway_round(input: &[i32]) -> i32 {
@@ -47,15 +40,9 @@ fn find_sum_match_halfway_round(input: &[i32]) -> i32 {
     let second_half = &input[half..input.len()];
     let mut sum: i32 = 0;
 
-    for (index, x) in first_half.iter().enumerate() {
-        if *x == second_half[index] {
-            sum += *x;
-        }
-    }
-
-    for (index, x) in second_half.iter().enumerate() {
-        if *x == first_half[index] {
-            sum += *x;
+    for (index, &x) in first_half.iter().enumerate() {
+        if x == second_half[index] {
+            sum += x + x;
         }
     }
 
