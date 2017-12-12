@@ -34,16 +34,14 @@ fn difference_between_max_min(input: &[Vec<i32>]) -> i32 {
 fn evenly_divide(input: &[Vec<i32>]) -> i32 {
     let mut sum: i32 = 0;
 
-    for row in input {
-        for x in row {
-            for y in row {
-                if *x != *y && *x % *y == 0 {
-                    sum += x / y;
-                    break;
-                }
+    input.iter().for_each(|row| {
+        row.iter().for_each(|x| for y in row {
+            if *x != *y && *x % *y == 0 {
+                sum += x / y;
+                break;
             }
-        }
-    }
+        });
+    });
 
     sum
 }
