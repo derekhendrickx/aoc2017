@@ -27,7 +27,7 @@ fn find_sum_match_next_digit(inputs: &[i32]) -> i32 {
     let last = *inputs.last().unwrap();
     let initial_sum = if last == previous { last } else { 0 };
 
-    (&inputs[1..]).iter().fold(initial_sum, |sum, &x| {
+    inputs[1..].iter().fold(initial_sum, |sum, &x| {
         let value = if x == previous { x } else { 0 };
         previous = x;
         sum + value
@@ -37,7 +37,7 @@ fn find_sum_match_next_digit(inputs: &[i32]) -> i32 {
 fn find_sum_match_halfway_round(input: &[i32]) -> i32 {
     let half = ((input.len() as f32) * 0.5) as usize;
 
-    (&input[0..half])
+    input[0..half]
         .iter()
         .enumerate()
         .collect::<Vec<(usize, &i32)>>()
