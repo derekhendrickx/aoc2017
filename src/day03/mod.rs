@@ -7,27 +7,31 @@ enum Direction {
     Right,
 }
 
-fn get_manhattan_distance(n: i32, input: i32) -> i32 {
+fn get_manhattan_distance(input: i32) -> i32 {
+    let n = (input as f32).sqrt().ceil() as i32;
     let mut spiral_memory = vec![vec![0; n as usize]; n as usize];
     let n_square = n * n;
-    let mut direction = Right;
-    let mut x = 0 as usize;
-    let mut y = 0 as usize;
+    let mut direction = Left;
+    let mut x = (n - 1) as usize;
+    let mut y = x;
+    let origin_y = (n / 2) as usize;
 
-    if n_square % 2 == 0 {
-        spiral_memory[y][x] = n_square;
+    if n % 2 == 0 {
+        x = 0;
+        y = x;
+        direction = Right;
+        spiral_memory[origin_y][origin_y - 1] = 1;
     } else {
-        direction = Left;
-        x = (n - 1) as usize;
-        y = (n - 1) as usize;
-        spiral_memory[y][x] = n_square;
+        spiral_memory[origin_y][origin_y] = 1;
     }
 
-    for value in (1..n_square + 1).rev() {
-        let row_value = spiral_memory[y][x];
-        if row_value == 0 {
-            spiral_memory[y][x] = value;
-        }
+    
+    println!("{:?}", spiral_memory);
+
+    for value in (1..n_square).rev() {
+        println!("{:?}", spiral_memory);
+        println!("{}", value + 1);
+        spiral_memory[y][x] = value + 1;
 
         match direction {
             Up => {
@@ -36,7 +40,7 @@ fn get_manhattan_distance(n: i32, input: i32) -> i32 {
                 }
             }
             Down => {
-                if spiral_memory[y + 1][x] > 0 {
+                if y == (n - 1) as usize || spiral_memory[y + 1][x] > 0 {
                     direction = Left;
                 }
             }
@@ -46,7 +50,7 @@ fn get_manhattan_distance(n: i32, input: i32) -> i32 {
                 }
             }
             Right => {
-                if x == 4 || spiral_memory[y][x + 1] > 0 {
+                if x == (n - 1) as usize || spiral_memory[y][x + 1] > 0 {
                     direction = Down;
                 }
             }
@@ -67,6 +71,8 @@ fn get_manhattan_distance(n: i32, input: i32) -> i32 {
             }
         }
     }
+
+    println!("{:?}", spiral_memory);
 
     let flatten_spiral = spiral_memory
         .iter()
@@ -91,28 +97,28 @@ mod tests {
     #[test]
     fn test_get_manhattan_distance_sample_input_1() {
         let input = 1;
-        let manhattan_distance = get_manhattan_distance(5, input);
+        let manhattan_distance = get_manhattan_distance(input);
         assert_eq!(0, manhattan_distance);
     }
 
     #[test]
     fn test_get_manhattan_distance_sample_input_2() {
         let input = 12;
-        let manhattan_distance = get_manhattan_distance(5, input);
+        let manhattan_distance = get_manhattan_distance(input);
         assert_eq!(3, manhattan_distance);
     }
 
     #[test]
     fn test_get_manhattan_distance_sample_input_3() {
         let input = 23;
-        let manhattan_distance = get_manhattan_distance(5, input);
+        let manhattan_distance = get_manhattan_distance(input);
         assert_eq!(2, manhattan_distance);
     }
 
     #[test]
     fn test_get_manhattan_distance_sample_input_4() {
         let input = 1024;
-        let manhattan_distance = get_manhattan_distance(5, input);
+        let manhattan_distance = get_manhattan_distance(input);
         assert_eq!(31, manhattan_distance);
     }
 }
