@@ -1,3 +1,4 @@
+use puzzle::Puzzle;
 use day03::Direction::*;
 
 enum Direction {
@@ -5,6 +6,25 @@ enum Direction {
     Down,
     Left,
     Right,
+}
+
+pub struct Day03 {
+    input: i32,
+}
+
+impl Day03 {
+    pub fn new() -> Day03 {
+        Day03 { input: 277_678 }
+    }
+}
+
+impl Puzzle for Day03 {
+    fn solve(&self) {
+        let steps_part1 = get_manhattan_distance(self.input);
+
+        println!("Day 03");
+        println!("Steps Part 1 = {}", steps_part1);
+    }
 }
 
 fn get_manhattan_distance(input: i32) -> i32 {
