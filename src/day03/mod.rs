@@ -1,3 +1,5 @@
+use day03::Direction::*;
+
 enum Direction {
     Up,
     Down,
@@ -6,17 +8,16 @@ enum Direction {
 }
 
 fn get_manhattan_distance(n: i32, input: i32) -> i32 {
-    let (x1, y1) = (0, 0);
     let mut spiral_memory = vec![vec![0; n as usize]; n as usize];
     let n_square = n * n;
-    let mut direction = Direction::Right;
+    let mut direction = Right;
     let mut x = 0 as usize;
     let mut y = 0 as usize;
 
     if n_square % 2 == 0 {
         spiral_memory[y][x] = n_square;
     } else {
-        direction = Direction::Left;
+        direction = Left;
         x = (n - 1) as usize;
         y = (n - 1) as usize;
         spiral_memory[y][x] = n_square;
@@ -29,58 +30,56 @@ fn get_manhattan_distance(n: i32, input: i32) -> i32 {
         }
 
         match direction {
-            Direction::Up => {
+            Up => {
                 if y == 0 || spiral_memory[y - 1][x] > 0 {
-                    direction = Direction::Right;
+                    direction = Right;
                 }
-            },
-            Direction::Down => {
+            }
+            Down => {
                 if spiral_memory[y + 1][x] > 0 {
-                    direction = Direction::Left;
+                    direction = Left;
                 }
-            },
-            Direction::Left => {
+            }
+            Left => {
                 if x == 0 || spiral_memory[y][x - 1] > 0 {
-                    direction = Direction::Up;
+                    direction = Up;
                 }
-            },
-            Direction::Right => {
+            }
+            Right => {
                 if x == 4 || spiral_memory[y][x + 1] > 0 {
-                    direction = Direction::Down;
+                    direction = Down;
                 }
-            },
+            }
         }
 
         match direction {
-            Direction::Up => {
+            Up => {
                 y -= 1;
-            },
-            Direction::Down => {
+            }
+            Down => {
                 y += 1;
-            },
-            Direction::Left => {
+            }
+            Left => {
                 x -= 1;
-            },
-            Direction::Right => {
+            }
+            Right => {
                 x += 1;
-            },
+            }
         }
     }
 
-    let flatten_spiral = spiral_memory.iter()
-    .flat_map(|row| row.iter())
-    .cloned()
-    .collect::<Vec<i32>>();
-    let origin_position = flatten_spiral.iter()
-    .position(|&value| value == 1)
-    .unwrap();
+    let flatten_spiral = spiral_memory
+        .iter()
+        .flat_map(|row| row.iter())
+        .cloned()
+        .collect::<Vec<i32>>();
+    let origin_position = flatten_spiral.iter().position(|&value| value == 1).unwrap();
     let origin = ((origin_position as i32) / n, (origin_position as i32) % n);
-    let input_position = flatten_spiral.iter()
-    .position(|&value| value == input)
-    .unwrap();
+    let input_position = flatten_spiral
+        .iter()
+        .position(|&value| value == input)
+        .unwrap();
     let destination = ((input_position as i32) / n, (input_position as i32) % n);
-    // Manhattan distance
-    // (x1 - x2) + (y1 - y2)
 
     (origin.0 - destination.0).abs() + (origin.1 - destination.1).abs()
 }
